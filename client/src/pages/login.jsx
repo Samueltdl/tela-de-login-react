@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // Imagens
 import ocultar from '../assets/images/ocultar.png'
 import ver from '../assets/images/ver.png'
+import monkey from '../assets/images/monkey.jpeg'
 
 //Components
 import Loader from '../components/loader';
@@ -17,9 +18,7 @@ export default function Login() {
   const navigate = useNavigate()
 
   const loader = () => {
-    if (loading) {
-      return <Loader />;
-    }
+    return loading ? <Loader /> : null
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -44,40 +43,65 @@ export default function Login() {
       await login(data)
       //console.log("Autenticado:", autenticado())
       autenticado() ? navigate("/home") : navigate("/")
-      
-      //autenticado === true ? navigate("/demandas") : null
     }
   }
 
+  const labelStyle = "text-gray-600 font-semibold"
+  const inputStyle = "w-full py-1 bg-gray-100 rounded hover:bg-gray-200 duration-150"
+
   return (
-    <div className="fixed inset-0 flex bg-blue-100 justify-center items-center">
+    <div className="fixed inset-0 flex bg-blue-300">
+
       {loader()}
-      <div className="shadow-lg z-40 w-1/3 h-1/2 p-11 rounded-2xl bg-blue-200">
+
+      <div className="p-14 border-2 shadow-2xl rounded-sm shadow-black w-1/3 h-full bg-white">
+        <h1 className='flex text-xl font-semibold text-gray-600'>Faça Login ou cadastre-se</h1>
+        <img src={monkey} className=' rounded-full scale-75'/>
+
         <form onSubmit={(e) => {handleSubmit(e)}} className="grid grid-rows-4 space-y-6">
+
           <div className="flex space-x-3 items-center">
-            <label className="text-white font-semibold">Email</label>
-            <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className="w-full py-1 rounded hover:bg-gray-200 duration-150" />
+
+            <label className={labelStyle}>Email</label>
+            
+            <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className={inputStyle} />
+          
           </div>
 
           <div className="flex space-x-3 items-center">
-          <label className="text-white font-semibold">Senha</label>
-            <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="py-1 w-full rounded hover:bg-gray-200 duration-150" />
+
+            <label className={labelStyle}>Senha</label>
+
+            <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={inputStyle} />
+            
             <img src={showPassword ? ocultar : ver} className="w-5 h-5 cursor-pointer hover:scale-110 duration-150" onClick={handlePasswordToggle} />
-          </div>
-          <div className='flex space-x-5 px-2'>
-          <button type="submit" className=" bg-green-300 w-1/2 text-white text-center font-semibold rounded-lg shadow-lg hover:scale-105 duration-75">
-            Login
-          </button>
-          <button type="button" onClick={() => navigate('/cadastro')} className=" bg-pink-300 w-1/2 text-white text-center font-semibold rounded-lg shadow-lg hover:scale-105 duration-75">
-            Cadastre-se
-          </button>
+          
           </div>
 
-          <button type='button' className="bg-gray-300 rounded-lg w-1/3 h-1/2 text-xs shadow-lg text-white hover:scale-105 duration-75">
-            Esqueci minha senha
-          </button>
+          <div className='flex space-x-5 px-2'>
+
+            <button type="submit" className="bg-green-500 w-1/2 text-white text-center font-semibold rounded-lg shadow-lg hover:scale-105 duration-75">
+              Login
+            </button>
+
+            <button type="button" onClick={() => navigate('/cadastro')} className=" bg-red-500 w-1/2 text-white text-center font-semibold rounded-lg shadow-lg hover:scale-105 duration-75">
+              Cadastre-se
+            </button>
+
+          </div>
+
+          <div className='flex justify-end pr-3'>
+
+            <button type='button' className="w-32 h-6 text-xs text-gray-400 border-b border-gray-400  hover:border-black hover:text-black duration-200">
+              Esqueci minha senha
+            </button>
+
+          </div>
+
         </form>
+
       </div>
+
     </div>
   );
 }

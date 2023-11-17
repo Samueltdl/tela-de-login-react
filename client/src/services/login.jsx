@@ -20,7 +20,7 @@ export const useLogin = () => {
         localStorage.setItem("email", response.data.email)
         localStorage.setItem("token", response.data.token)
 
-        alert("Login efetuado com sucesso!")
+        //alert("Login efetuado com sucesso!")
       }
 
     } catch (error) {

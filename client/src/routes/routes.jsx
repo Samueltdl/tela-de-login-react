@@ -6,7 +6,6 @@ import PrivateRoutes from './privateRoutes';
 
 //Páginas
 import Login from '../pages/login';
-import Cadastro from '../pages/cadastro';
 import Home from '../pages/home';
 
 const Routering = () => {
@@ -14,7 +13,6 @@ const Routering = () => {
     <Router>
         <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/home" element={<PrivateRoutes> <Home /> </PrivateRoutes>} />
         </Routes>
     </Router>
