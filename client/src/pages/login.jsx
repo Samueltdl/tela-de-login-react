@@ -42,7 +42,7 @@ export default function Login() {
     else{
       await login(data)
       //console.log("Autenticado:", autenticado())
-      autenticado() ? navigate("/home") : navigate("/")
+      autenticado()=== true ? navigate("/home") : navigate("/")
     }
   }
 
@@ -54,11 +54,11 @@ export default function Login() {
 
       {loader()}
 
-      <div className="p-14 border-2 shadow-2xl rounded-sm shadow-black w-1/3 h-full bg-white">
+      <div className="p-14 shadow-2xl rounded-sm shadow-black overflow-y-auto w-1/3 bg-white">
         <h1 className='flex text-xl font-semibold text-gray-600'>Faça Login ou cadastre-se</h1>
         <img src={monkey} className=' rounded-full scale-75'/>
 
-        <form onSubmit={(e) => {handleSubmit(e)}} className="grid grid-rows-4 space-y-6">
+        <form onSubmit={(e) => {handleSubmit(e)}} className="space-y-7">
 
           <div className="flex space-x-3 items-center">
 
