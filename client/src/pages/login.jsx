@@ -47,16 +47,16 @@ export default function Login() {
   }
 
   const labelStyle = "text-gray-600 font-semibold"
-  const inputStyle = "w-full py-1 bg-gray-100 rounded hover:bg-gray-200 duration-150"
+  const inputStyle = "w-full py-1 bg-gray-100 rounded hover:bg-gray-200 duration-200"
 
   return (
     <div className="fixed inset-0 flex bg-blue-300">
 
       {loader()}
 
-      <div className="p-14 shadow-2xl rounded-sm shadow-black overflow-y-auto w-1/3 bg-white">
+      <div className="p-14 shadow-xl rounded-sm shadow-black overflow-y-auto w-1/3 bg-white">
         <h1 className='flex text-xl font-semibold text-gray-600'>Faça Login ou cadastre-se</h1>
-        <img src={monkey} className=' rounded-full scale-75'/>
+        <img src={monkey} className=' rounded-full shadow-xl shadow-gray-300 scale-75'/>
 
         <form onSubmit={(e) => {handleSubmit(e)}} className="space-y-7">
 
@@ -78,19 +78,19 @@ export default function Login() {
           
           </div>
 
-          <div className='flex space-x-5 px-2'>
+          <div className='flex justify-center space-x-5 px-2'>
 
-            <button type="submit" className="bg-green-500 w-1/2 text-white text-center font-semibold rounded-lg shadow-lg hover:scale-105 duration-75">
+            <button type="submit" className="bg-green-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
               Login
             </button>
 
-            <button type="button" onClick={() => navigate('/cadastro')} className=" bg-red-500 w-1/2 text-white text-center font-semibold rounded-lg shadow-lg hover:scale-105 duration-75">
+            <button type="button" onClick={() => navigate('/cadastro')} className=" bg-red-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
               Cadastre-se
             </button>
 
           </div>
 
-          <div className='flex justify-end pr-3'>
+          <div className='flex justify-center pr-3'>
 
             <button type='button' className="w-32 h-6 text-xs text-gray-400 border-b border-gray-400  hover:border-black hover:text-black duration-200">
               Esqueci minha senha
