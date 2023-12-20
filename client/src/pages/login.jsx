@@ -55,6 +55,7 @@ export default function Login() {
       {loader()}
 
       <div className="p-14 shadow-xl rounded-sm shadow-black overflow-y-auto w-1/3 bg-white">
+        
         <h1 className='flex text-xl font-semibold text-gray-600'>Faça Login ou cadastre-se</h1>
         <img src={monkey} className=' rounded-full shadow-xl shadow-gray-300 scale-75'/>
 
@@ -63,7 +64,6 @@ export default function Login() {
           <div className="flex space-x-3 items-center">
 
             <label className={labelStyle}>Email</label>
-            
             <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className={inputStyle} />
           
           </div>
@@ -71,7 +71,6 @@ export default function Login() {
           <div className="flex space-x-3 items-center">
 
             <label className={labelStyle}>Senha</label>
-
             <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={inputStyle} />
             
             <img src={showPassword ? ocultar : ver} className="w-5 h-5 cursor-pointer hover:scale-110 duration-150" onClick={handlePasswordToggle} />
@@ -83,7 +82,6 @@ export default function Login() {
             <button type="submit" className="bg-green-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
               Login
             </button>
-
             <button type="button" onClick={() => navigate('/cadastro')} className=" bg-red-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
               Cadastre-se
             </button>
