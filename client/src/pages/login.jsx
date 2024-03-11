@@ -46,18 +46,18 @@ export default function Login() {
     }
   }
 
-  const labelStyle = "text-gray-600 font-semibold"
+  const labelStyle = "text-gray-600 font-semibold lg:text-base md:text-sm"
   const inputStyle = "w-full py-1 bg-gray-100 rounded hover:bg-gray-200 duration-200"
 
   return (
-    <div className="fixed inset-0 flex bg-blue-300">
+    <div className="fixed inset-0 bg-blue-300 overflow-y-auto">
 
       {loader()}
 
-      <div className="p-14 shadow-xl rounded-sm shadow-black overflow-y-auto w-1/3 bg-white">
+      <div className="min-h-full p-14 shadow-xl rounded-sm shadow-black md:w-5/12 lg:w-1/3 sm:w-7/12 bg-white">
         
-        <h1 className='flex text-xl font-semibold text-gray-600'>Faça Login ou cadastre-se</h1>
-        <img src={monkey} className=' rounded-full shadow-xl shadow-gray-300 scale-75'/>
+        <h1 className='flex lg:text-xl font-semibold text-gray-600 md:text-md'>Faça Login ou cadastre-se</h1>
+        <img src={monkey} className='rounded-full shadow-xl shadow-gray-300 scale-75'/>
 
         <form onSubmit={(e) => {handleSubmit(e)}} className="space-y-7">
 
@@ -88,9 +88,9 @@ export default function Login() {
 
           </div>
 
-          <div className='flex justify-center pr-3'>
+          <div className='flex justify-center'>
 
-            <button type='button' className="w-32 h-6 text-xs text-gray-400 border-b border-gray-400  hover:border-black hover:text-black duration-200">
+            <button type='button' className="w-32 h-6 text-xs text-gray-400 border-b border-gray-400 hover:border-black hover:text-black duration-200">
               Esqueci minha senha
             </button>
 
