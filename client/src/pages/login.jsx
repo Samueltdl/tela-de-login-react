@@ -11,6 +11,8 @@ import Loader from '../components/loader';
 
 //Hook de login e verificação de usuário autenticado
 import { useLogin, autenticado } from '../services/login';
+import { ModalCadastro } from '../components/Modal/Cadastro';
+import { ModalRecuperarSenha } from '../components/Modal/RecuperarSenha';
 
 export default function Login() {
 
@@ -25,6 +27,9 @@ export default function Login() {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [openModalCadastro, setOpenModalCadastro] = useState(false);
+  const [openModalRecuperarSenha, setOpenModalRecuperarSenha] = useState(false);
 
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
@@ -51,6 +56,8 @@ export default function Login() {
 
   return (
     <div className="fixed inset-0 bg-blue-300 overflow-y-auto">
+      <ModalCadastro isOpen={openModalCadastro} isClose={() => setOpenModalCadastro(!openModalCadastro)} />
+      <ModalRecuperarSenha isOpen={openModalRecuperarSenha} isClose={() => setOpenModalRecuperarSenha(!openModalRecuperarSenha)} />
 
       {loader()}
 
@@ -82,7 +89,7 @@ export default function Login() {
             <button type="submit" className="bg-green-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
               Login
             </button>
-            <button type="button" onClick={() => navigate('/cadastro')} className=" bg-red-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
+            <button type="button" onClick={() => setOpenModalCadastro(!openModalCadastro)} className=" bg-red-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
               Cadastre-se
             </button>
 
@@ -90,7 +97,7 @@ export default function Login() {
 
           <div className='flex justify-center'>
 
-            <button type='button' className="w-32 h-6 text-xs text-gray-400 border-b border-gray-400 hover:border-black hover:text-black duration-200">
+            <button type='button' onClick={() => setOpenModalRecuperarSenha(!openModalRecuperarSenha)} className="w-32 h-6 text-xs text-gray-400 border-b border-gray-400 hover:border-black hover:text-black duration-200">
               Esqueci minha senha
             </button>
 
