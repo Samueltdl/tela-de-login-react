@@ -2,6 +2,7 @@ import { useState } from "react";
 
 //BaseURL da API
 import Api from "./config";
+import { Axios } from "axios";
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ export const useLogin = () => {
       if (response) {
         setLoading(false);
 
-        //console.log(response.data)
+        console.log(response.data)
 
         localStorage.setItem("email", response.data.email)
         localStorage.setItem("token", response.data.token)
