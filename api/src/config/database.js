@@ -1,12 +1,25 @@
-const pgp = require('pg-promise')(/* options */)
 require('dotenv').config();
 
-const db = pgp(process.env.CONNECTION_STRING)
+async function connectDatabase(){
 
-db.one('SELECT $1 AS value', 123)
-  .then((data) => {
-    console.log('DATA:', data.value)
-  })
-  .catch((error) => {
-    console.log('ERROR:', error)
-  })
+  if(global.connection){
+    return global.connection.connect();
+  }
+
+  const { Pool } = require('pg');
+  const pool = new Pool({
+    connectionString: process.env.CONNECTION_STRING
+  });
+
+  const client = await pool.connect();
+  console.log("Successful connecting to the database.");
+
+  const res = await client.query('select now()');
+  console.log(res.rows[0]);
+  client.release();
+
+  global.connection = pool;
+  return pool.connect();
+}
+
+connectDatabase();
