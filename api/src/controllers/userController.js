@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const userModel = require('../models/userModel');
 
 // função que valida o email
@@ -61,11 +62,19 @@ const createUser = async (req, res) => {
   delete userData.confirmPassword;
 
   try {
+    // pesquisando o username fornecido para verificar se já existe
     const existingUser = await userModel.getUserByUsername(userData.username);
     
     if (existingUser) {
       return res.status(400).json({ message: 'Username já existente.' });
     }
+
+    // encripta o password antes de armazenar no banco de dados
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(userData.password, salt);
+
+    // atualiza o userData com o password encriptado
+    userData.password = hashedPassword;
 
     const newUser = await userModel.createUser(userData);
     return res.status(201).json(newUser);
