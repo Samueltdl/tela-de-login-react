@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 let pool;
 
 async function connectDatabase() {
+  console.log('Connecting to the database.')
   if (pool) {
     return pool;
   }
