@@ -108,12 +108,9 @@ const login = async (req, res) => {
   const userData = req.body;
 
   // verificando se todos os dados foram preenchidos antes de prosseguir
-  if (!userData || !userData.email || !userData.password) {
+  if (!userData || !userData.username || !userData.password) {
     return res.status(400).json({ message: 'Dados inválidos ou não preenchidos.' });
   }
-
-  // chamando o validador de email
-  validateEmail(userData.email)
 
   try {
     // pesquisando o username fornecido para verificar se o usuário existe
