@@ -124,8 +124,8 @@ const login = async (req, res) => {
     // gerar token JWT
     const token = jwt.sign(
       { userId: userData.id, username: userData.username },
-      process.env.TOKEN_SECRET_KEY.toString(), // chave secreta de autenticaçã do token
-      { expiresIn: '1h' } // Tempo de expiração do token
+      process.env.TOKEN_SECRET_KEY, // chave secreta de autenticação do token
+      { expiresIn: '1h' } // tempo de expiração do token
     );
   
     // se está tudo válido então retorna um status 200 e uma mensagem de login bem sucedido e o token

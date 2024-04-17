@@ -9,7 +9,6 @@ const validateEmail = (email) => {
   }
 }
 
-// valida o token de usuário para as rotas protegidas
 const validateToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -20,7 +19,7 @@ const validateToken = (req, res, next) => {
   const token = authHeader.split(' ')[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY.toString());
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
     req.userId = decoded.userId;
     req.username = decoded.username;
     next();
