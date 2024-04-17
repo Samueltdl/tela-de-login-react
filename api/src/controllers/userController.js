@@ -1,12 +1,8 @@
-// biblioteca para encriptar a senha
-const bcrypt = require('bcrypt');
-
-// importando a model
-const userModel = require('../models/userModel');
-
-// função que valida o email
-const { validateEmail } = require('../utils/validators');
-
+require('dotenv').config(); // biblioteca para acessar as variáveis de ambiente
+const bcrypt = require('bcrypt'); // biblioteca para encriptar a senha
+const jwt = require('jsonwebtoken'); // biblioteca para gerar o token do usuário
+const userModel = require('../models/userModel'); // importando a model
+const { validateEmail } = require('../utils/validators'); // função que valida o email
 
 // retorna todos os usuários
 const getAllUsers = async (req, res) => {
@@ -125,10 +121,15 @@ const login = async (req, res) => {
       return res.status(401).json({ message: 'Senha incorreta.' });
     }
 
-    // --------------- AQUI VAI TER O CÓDIGO PARA GERAR O TOKEN --------------------- \\
-
-    // se está tudo válido então retorna um status 200 e uma mensagem de login bem sucedido
-    return res.status(200).json({ message: 'Login efetuado com sucesso.' });
+    // gerar token JWT
+    const token = jwt.sign(
+      { userId: userData.id, username: userData.username },
+      process.env.TOKEN_SECRET_KEY.toString(), // chave secreta de autenticaçã do token
+      { expiresIn: '1h' } // Tempo de expiração do token
+    );
+  
+    // se está tudo válido então retorna um status 200 e uma mensagem de login bem sucedido e o token
+    return res.status(200).json({ message: 'Login efetuado com sucesso.', token });
 
   } catch (error) {
     console.error("Error logging in:", error.message);
