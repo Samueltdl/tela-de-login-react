@@ -1,5 +1,5 @@
 # login-e-cadastro-react-express
-Projeto full-stack de uma tela de login e cadastro, desenvolvido como projeto pessoal para estudar sobre desenvolvimento web.
+Projeto full-stack de uma tela de login e cadastro, desenvolvido como projeto pessoal com o intuito de estudar sobre desenvolvimento web com React e Node.
 
 ## Tecnologias utilizadas
 
