@@ -1,6 +1,7 @@
-const connectDatabase = require('./config/database');
+const connectDatabase = require('../database/db');
 const { v4: uuidv4 } = require('uuid');
 
+// retorna todos os usuários do banco
 const getAllUsers = async () => {
   console.log('Starting getAllUsers model.')
   try {
@@ -13,6 +14,7 @@ const getAllUsers = async () => {
   }
 };
 
+// retorna somente o usuário do banco com o id especificado na requisição
 const getUserById = async (userId) => {
   console.log('Starting getUserById model.')
   try {
@@ -30,6 +32,8 @@ const getUserById = async (userId) => {
   }
 };
 
+// retorna um usuário caso já exista com o username requisitado
+// utilizado como um método interndo na api na hora de cadastrar um novo usuário, já que o username é chave única
 const getUserByUsername = async (username) => {
   console.log('Starting getUserByUsername model.')
   try {
@@ -52,6 +56,7 @@ const getUserByUsername = async (username) => {
   }
 };
 
+// cadastra um novo usuário no banco
 const createUser = async (userData) => {
   console.log('Starting createUser model.')
   const { name, email, username, password } = userData;
@@ -79,14 +84,17 @@ const createUser = async (userData) => {
   }
 }
 
+// edita o usuário especficado na requisição no banco
 const editUser = async () => {
   console.log('Starting editUser model.')
 }
 
+// delete o usuário especificado na requisição do banco
 const deleteUser = async () => {
   console.log('Starting deleteUser model.')
 }
 
+// acessa o banco para verificar as credenciais do usuário que está realizando login
 const login = async () => {
   console.log('Starting login model.')
 }
