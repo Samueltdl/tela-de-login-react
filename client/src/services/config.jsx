@@ -5,10 +5,9 @@ const Api  = axios.create({
     headers:{
         "Content-Type":"application/json",
         Accept:"*/*",
-        withCredentials: true
-        //Authorization: localStorage.getItem("token")
+        withCredentials: true,
+        Authorization: `Bearer ${localStorage.getItem("token")}`
     },
 });
 
 export default Api;
-
