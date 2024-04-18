@@ -85,7 +85,7 @@ const createUser = async (userData) => {
 }
 
 // edita o usuário especficado na requisição no banco
-const editUser = async (user) => {
+const updateUser = async (user) => {
   const { id, name, email, username, password } = user;
 
   try {
@@ -123,6 +123,6 @@ module.exports = {
   getUserById,
   getUserByUsername,
   createUser,
-  editUser,
+  updateUser,
   deleteUser
 };
