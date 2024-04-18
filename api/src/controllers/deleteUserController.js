@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel'); // importando a model
+const userModelInterface = require('../models/userModelInterface'); // importando a model
 
 // deleta seu próprio usuário
 const deleteUser = async (req, res) => {
@@ -6,4 +6,4 @@ const deleteUser = async (req, res) => {
       
   };
 
-module.exports = deleteUser;
+module.exports = deleteUser

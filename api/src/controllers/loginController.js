@@ -1,7 +1,7 @@
 require('dotenv').config(); // biblioteca para acessar as variáveis de ambiente
 const bcrypt = require('bcrypt'); // biblioteca para encriptar a senha
 const jwt = require('jsonwebtoken'); // biblioteca para gerar o token do usuário
-const userModel = require('../models/userModel'); // importando a model
+const userModelInterface = require('../models/userModelInterface'); // importando a model
 
 // login e autenticação
 const login = async (req, res) => {
@@ -16,7 +16,7 @@ const login = async (req, res) => {
 
     try {
       // pesquisando o username fornecido para verificar se o usuário existe
-      const existingUser = await userModel.getUserByUsername(userData.username);
+      const existingUser = await userModelInterface.getUserByUsername(userData.username);
       if (!existingUser) {
         return res.status(404).json({ message: 'Usuário não encontrado.' });
       }

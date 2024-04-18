@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt'); // biblioteca para encriptar a senha
-const userModel = require('../models/userModel'); // importando a model
+const userModelInterface = require('../models/userModelInterface') // importando a model
 const { validateEmail } = require('../utils/validators'); // função que valida o email
 
 // edita as informações de um usuário (o usuário pode editar somente suas próprias informações)
@@ -28,8 +28,8 @@ const updateUser = async (req, res) => {
   
     try {
       // pesquisando o username fornecido para verificar se já existe e é diferente do username antigo caso tenha sido alterado
-      const user = await userModel.getUserById(userData.id);
-      const existingUser = await userModel.getUserByUsername(userData.username);
+      const user = await userModelInterface.getUserById(userData.id);
+      const existingUser = await userModelInterface.getUserByUsername(userData.username);
       if (existingUser && existingUser.username !== user.username) {
         return res.status(400).json({ message: 'Username já existente.' });
       }
@@ -41,7 +41,7 @@ const updateUser = async (req, res) => {
         userData.password = hashedPassword;
       };
   
-      const newUser = await userModel.updateUser(userData);
+      const newUser = await userModelInterface.updateUser(userData);
       return res.status(201).json(newUser);
   
     } catch (error) {

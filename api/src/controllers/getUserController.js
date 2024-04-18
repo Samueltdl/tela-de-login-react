@@ -1,10 +1,10 @@
-const userModel = require('../models/userModel'); // importando a model
+const userModelInterface = require('../models/userModelInterface') // importando a model
 
 // retorna todos os usuários
 const getAllUsers = async (req, res) => {
     console.log('Starting getAllUsers controller.');
     try {
-      const users = await userModel.getAllUsers();
+      const users = await userModelInterface.getAllUsers();
   
       if (!users || users.length === 0) {
         return res.status(404).json({ message: 'Nenhum usuário encontrado.' });
@@ -23,7 +23,7 @@ const getUserById = async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const user = await userModel.getUserById(userId);
+    const user = await userModelInterface.getUserById(userId);
 
     if (!user) {
       return res.status(404).json({ message: 'Usuário não encontrado.' });

@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt'); // biblioteca para encriptar a senha
-const userModel = require('../models/userModel'); // importando a model
+const userModelInterface = require('../models/userModelInterface')
 const { validateEmail } = require('../utils/validators'); // função que valida o email
 
 // cria um novo usuário
@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
   
     try {
       // pesquisando o username fornecido para verificar se já existe
-      const existingUser = await userModel.getUserByUsername(userData.username);
+      const existingUser = await userModelInterface.getUserByUsername(userData.username);
       if (existingUser) {
         return res.status(400).json({ message: 'Username já existente.' });
       }
@@ -40,7 +40,7 @@ const createUser = async (req, res) => {
       // atualiza o userData com o password encriptado
       userData.password = hashedPassword;
   
-      const newUser = await userModel.createUser(userData);
+      const newUser = await userModelInterface.createUser(userData);
       return res.status(201).json(newUser);
   
     } catch (error) {
