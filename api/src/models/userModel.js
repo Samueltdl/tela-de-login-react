@@ -102,7 +102,6 @@ const editUser = async (user) => {
 
     // Se a senha foi fornecida, atualize-a
     if (password) {
-      
       query.replace('SET', 'SET password = $5,');
     }
 
@@ -119,17 +118,11 @@ const deleteUser = async () => {
   console.log('Starting deleteUser model.')
 }
 
-// acessa o banco para verificar as credenciais do usuário que está realizando login
-const login = async () => {
-  console.log('Starting login model.')
-}
-
 module.exports = {
   getAllUsers,
   getUserById,
   getUserByUsername,
   createUser,
   editUser,
-  deleteUser,
-  login
+  deleteUser
 };
