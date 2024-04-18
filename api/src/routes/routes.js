@@ -5,11 +5,10 @@ const { validateToken } = require('../utils/validators');
 const router = express.Router();
 
 router.post('/login', userController.login);
+router.post('/user', userController.createUser);
 
 router.use(validateToken)
-router.get('/users', userController.getAllUsers);
-router.get('/user', userController.getUserById);
-router.post('/user', userController.createUser);
+router.get('/user', userController.getAllUsers);
 router.put('/user', userController.editUser);
 router.delete('/user', userController.deleteUser);
 
