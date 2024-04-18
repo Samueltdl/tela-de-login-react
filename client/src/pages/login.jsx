@@ -25,7 +25,7 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState(false);
   
-  const [email, setEmail] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
 
   const [openModalCadastro, setOpenModalCadastro] = useState(false);
@@ -38,10 +38,10 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const data = {email, password}
+    const data = {username, password}
     console.log(data)
 
-    if (!data.email || !data.password){
+    if (!data.username || !data.password){
       return alert("Todos os campos precisam ser preenchidos!")
     }
     else{
@@ -68,19 +68,20 @@ export default function Login() {
 
         <form onSubmit={(e) => {handleSubmit(e)}} className="space-y-7">
 
-          <div className="flex space-x-3 items-center">
+          <div className="flex flex-col">
 
-            <label className={labelStyle}>Email</label>
-            <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className={inputStyle} />
+            <label className={labelStyle}>Nome de usuário</label>
+            <input type="text" name="username" id="username" onChange={(e) => setusername(e.target.value)} className={inputStyle} />
           
           </div>
 
-          <div className="flex space-x-3 items-center">
+          <div className="flex flex-col">
 
             <label className={labelStyle}>Senha</label>
-            <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={inputStyle} />
-            
-            <img src={showPassword ? ocultar : ver} className="w-5 h-5 cursor-pointer hover:scale-110 duration-150" onClick={handlePasswordToggle} />
+            <div className='flex flex-row space-x-2 items-center'>
+              <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={inputStyle} />
+              <img src={showPassword ? ocultar : ver} className="w-6 h-6 cursor-pointer hover:scale-110 duration-150" onClick={handlePasswordToggle} />
+            </div>
           
           </div>
 

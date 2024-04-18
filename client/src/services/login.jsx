@@ -2,7 +2,6 @@ import { useState } from "react";
 
 //BaseURL da API
 import Api from "./config";
-import { Axios } from "axios";
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
