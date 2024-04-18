@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); // importando o express
 const userControllerInterface = require('../controllers/userControllerInterface'); // importando o controller
 const { validateToken } = require('../utils/validators'); // importando o validador de token
 
