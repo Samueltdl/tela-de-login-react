@@ -1,4 +1,4 @@
-const connectDatabase = require('../database/db');
+const connectDatabase = require('../database/db'); // importando conexão com o banco de dados
 
 // edita o usuário especficado na requisição no banco
 const updateUser = async (user) => {

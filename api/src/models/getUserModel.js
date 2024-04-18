@@ -1,4 +1,4 @@
-const connectDatabase = require('../database/db');
+const connectDatabase = require('../database/db'); // importando conexão com o banco de dados
 
 // retorna todos os usuários do banco
 const getAllUsers = async () => {

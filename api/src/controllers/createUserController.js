@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt'); // biblioteca para encriptar a senha
-const userModelInterface = require('../models/userModelInterface')
+const userModelInterface = require('../models/userModelInterface') // importando a model
 const { validateEmail } = require('../utils/validators'); // função que valida o email
 
 // cria um novo usuário

@@ -1,5 +1,5 @@
-const connectDatabase = require('../database/db');
-const { v4: uuidv4 } = require('uuid');
+const connectDatabase = require('../database/db'); // importando conexão com o banco de dados
+const { v4: uuidv4 } = require('uuid'); // biblioteca uuid
 
 // cadastra um novo usuário no banco
 const createUser = async (userData) => {

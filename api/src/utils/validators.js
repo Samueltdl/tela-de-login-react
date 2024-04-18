@@ -1,12 +1,13 @@
 require('dotenv').config(); // biblioteca dotenv para acessar as variáveis de ambiente
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); // biblioteca para gerar e validar o token jwt
 
-// Verifica o formato do email usando regex
+// verifica o formato do email usando regex
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
 
+// valida o token de usuário
 const validateToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 

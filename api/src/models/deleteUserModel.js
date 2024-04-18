@@ -1,4 +1,4 @@
-const connectDatabase = require('../database/db');
+const connectDatabase = require('../database/db'); // importando conexão com o banco de dados
 
 // delete o usuário especificado na requisição do banco
 const deleteUser = async () => {

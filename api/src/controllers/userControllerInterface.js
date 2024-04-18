@@ -1,3 +1,4 @@
+// importando todos os controllers
 const { getAllUsers } = require('./getUserController');
 const createUser = require('../controllers/createUserController');
 const updateUser = require('../controllers/updateUserController');

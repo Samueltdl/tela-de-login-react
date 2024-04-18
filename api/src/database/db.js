@@ -3,8 +3,11 @@ const { Pool } = require('pg');
 
 let pool;
 
+// cria a conexão com o banco de dados
 async function connectDatabase() {
   console.log('Connecting to the database.')
+
+  // se já possui uma conexão ativa então retorna ela mesma
   if (pool) {
     return pool;
   }

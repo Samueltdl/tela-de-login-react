@@ -1,3 +1,4 @@
+// importando todas as models
 const { getAllUsers, getUserById, getUserByUsername } = require('./getUserModel');
 const createUser = require('./createUserModel');
 const updateUser = require('./updateUserModel');
