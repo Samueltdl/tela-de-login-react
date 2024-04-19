@@ -11,12 +11,12 @@ const createUser = async (userData) => {
       const pool = await connectDatabase();
       
       const query = `
-        INSERT INTO users (id, name, email, username, password)
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO users (id, name, email, username, password, registrationdate)
+        VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING *;
       `;
       
-      const { rows } = await pool.query(query, [userId, name, email, username, password]);
+      const { rows } = await pool.query(query, [userId, name, email, username, password, new Date()]);
   
       if (rows && rows.length > 0) {
         return rows[0];
