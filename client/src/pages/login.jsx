@@ -61,9 +61,9 @@ export default function Login() {
 
       {loader()}
 
-      <div className="min-h-full p-14 shadow-xl rounded-sm shadow-black md:w-5/12 lg:w-1/3 sm:w-7/12 bg-white">
+      <div className="min-h-full p-12 shadow-xl rounded-sm shadow-black md:w-5/12 xl:w-1/3 sm:w-7/12 bg-white">
         
-        <h1 className='flex lg:text-xl font-semibold text-gray-600 md:text-md'>Faça Login ou cadastre-se</h1>
+        <h1 className='text-xl font-semibold text-gray-600'>Faça Login ou cadastre-se</h1>
         <img src={monkey} className='rounded-full shadow-xl shadow-gray-300 scale-75'/>
 
         <form onSubmit={(e) => {handleSubmit(e)}} className="space-y-7">
