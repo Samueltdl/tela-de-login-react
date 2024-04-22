@@ -21,9 +21,11 @@ export const ModalCadastro = ({isOpen, isClose}) => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    // submeter formulário
     const handleSubmit = async(e) => {
         e.preventDefault();
 
+        // json a ser enviado para a api
         const data = { name, email, username, password, confirmPassword };
 
         // varificando se todos os dados foram preenchidos
@@ -105,7 +107,6 @@ export const ModalCadastro = ({isOpen, isClose}) => {
                 </div>
             } </BgBlur> 
             </>
-            
         );
     }
-    }
+}
