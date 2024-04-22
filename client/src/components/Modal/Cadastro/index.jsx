@@ -53,8 +53,8 @@ export const ModalCadastro = ({isOpen, isClose}) => {
             <>
             {cadastrando ? <Loader /> : null}
             <BgBlur> {
-                <div className="flex flex-col items-center bg-white lg:w-1/4 lg:h-2/5 rounded-md shadow-2xl z-40">
-                    <div className="flex w-full px-4 py-4 border-b justify-between lg:text-xl font-bold">
+                <div className="flex flex-col h-auto max-[640px]:w-4/5 lg:w-1/4 md:w-1/3 sm:w-1/2 pb-2 items-center bg-white  rounded-md shadow-2xl z-40">
+                    <div className="flex w-full px-4 py-4 border-b justify-between text-xl font-bold">
                         Cadastre-se!
                         <button className="bg-pink-400 text-white w-7 h-7 hover:scale-110 duration-75 rounded" onClick={isClose} >X</button>
                     </div>
