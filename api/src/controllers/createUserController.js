@@ -40,8 +40,8 @@ const createUser = async (req, res) => {
       // atualiza o userData com o password encriptado
       userData.password = hashedPassword;
   
-      const newUser = await userModelInterface.createUser(userData);
-      return res.status(201).json(newUser);
+      await userModelInterface.createUser(userData);
+      return res.status(201).json({ message: "Cadastro efetuado com sucesso." });
   
     } catch (error) {
       console.error("Error creating user:", error.message);
