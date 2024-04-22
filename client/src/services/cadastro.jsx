@@ -7,20 +7,20 @@ export const useCadastrarUsuario = () => {
   const [cadastrando, setCadastrando] = useState(false);
 
   const cadastrarUsuario = async (data) => {
-
+    //console.log(data)
     try {
       setCadastrando(true);
-      const response = await Api.post("/user/", data);
+      const response = await Api.post("/user", data);
+      //console.log(response)
 
-      if (response.data.success && response.data.success === false){
+      if (response.status === 201){
         setCadastrando(false);
         return alert(response.data.message)
       }
 
-      else if(response.data.success && response.data.success === true){
-        setCadastrando(false);
-        return alert(response.data.message)
-      }
+      setCadastrando(false);
+      return alert(`${response.data.message} \n\n Código do erro: ${response.status}`)
+    
     } 
 
     catch (error) {

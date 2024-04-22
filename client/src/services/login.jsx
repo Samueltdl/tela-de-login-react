@@ -7,21 +7,20 @@ export const useLogin = () => {
   const [loading, setLoading] = useState(false);
 
   const login = async (data) => {
+
     try {
       setLoading(true);
-
       const response = await Api.post("/login", data);
 
-      if (response) {
+      if (response.status === 200) {
         setLoading(false);
 
-        console.log(response.data)
-
-        localStorage.setItem("email", response.data.email)
         localStorage.setItem("token", response.data.token)
-
-        //alert("Login efetuado com sucesso!")
+        return alert(response.data.message)
       }
+
+      setLoading(false);
+      return alert(`${response.data.message} \n\n Código do erro: ${response.status}`)
 
     } catch (error) {
       //console.log(error);
