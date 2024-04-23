@@ -8,7 +8,8 @@ router.post('/login', userControllerInterface.login);
 router.post('/user', userControllerInterface.createUser);
 
 router.use(validateToken);
-router.get('/user', userControllerInterface.getAllUsers);
+router.get('/allusers', userControllerInterface.getAllUsers);
+router.get('/user', userControllerInterface.getUserByUsername);
 router.put('/user', userControllerInterface.updateUser);
 router.delete('/user', userControllerInterface.deleteUser);
 
