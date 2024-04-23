@@ -18,7 +18,7 @@ export const useLogin = () => {
         localStorage.setItem("token", response.data.token)
         return alert(response.data.message)
       }
-
+      console.log(response)
       setLoading(false);
       return alert(`${response.data.message} \n\n Código do erro: ${response.status}`)
 
@@ -29,11 +29,5 @@ export const useLogin = () => {
     }
   };
 
-
   return { login, loading };
 };
-
-export const autenticado = () => {
-  const token = localStorage.getItem("token");
-  return token && token !== undefined  ? true : false
-}

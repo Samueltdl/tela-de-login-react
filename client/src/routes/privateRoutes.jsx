@@ -1,14 +1,14 @@
 import React from "react";
 
 //Autenticação
-import { autenticado } from "../services/login";
+import { authenticate } from "../utils/auth/authenticate.jsx";
 
 //Páginas
 import Login from "../pages/login";
 
 const privateRoutes = ({children}) => {
     //console.log(autenticado())
-    return autenticado() ? children : <Login />
+    return authenticate() ? children : <Login />
 }
 
 export default privateRoutes;

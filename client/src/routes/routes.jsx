@@ -13,7 +13,7 @@ const Routering = () => {
     <Router>
         <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/home" element={<PrivateRoutes> <Home /> </PrivateRoutes>} />
+            <Route path="/home" element={<PrivateRoutes> { <Home /> } </PrivateRoutes>} />
         </Routes>
     </Router>
   );

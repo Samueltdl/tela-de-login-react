@@ -8,11 +8,14 @@ import monkey from '../assets/images/monkey.jpeg'
 
 //Components
 import Loader from '../components/loader';
-
-//Hook de login e verificação de usuário autenticado
-import { useLogin, autenticado } from '../services/login';
 import { ModalCadastro } from '../components/Modal/Cadastro';
 import { ModalRecuperarSenha } from '../components/Modal/RecuperarSenha';
+
+//Hook de login
+import { useLogin } from '../services/login';
+
+// validador de usuário autenticado
+import { authenticate } from '../utils/auth/authenticate';
 
 export default function Login() {
 
@@ -47,7 +50,7 @@ export default function Login() {
     else{
       await login(data)
       //console.log("Autenticado:", autenticado())
-      autenticado()=== true ? navigate("/home") : navigate("/")
+      authenticate()=== true ? navigate("/home") : navigate("/")
     }
   }
 
