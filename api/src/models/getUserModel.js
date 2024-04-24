@@ -54,8 +54,32 @@ const getUserByUsername = async (username) => {
   }
 };
 
+// retorna um usuário caso já exista com o email requisitado
+const getUserByEmail = async (email) => {
+  console.log('Starting getUserByEmail model.')
+  try {
+    const pool = await connectDatabase();
+    
+    const query = `
+      SELECT * FROM users WHERE email = $1;
+    `;
+
+    const { rows } = await pool.query(query, [email]);
+
+    if (rows && rows.length > 0) {
+      return rows[0];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching user by email:", error.message);
+    throw error;
+  }
+};
+
 module.exports = {
     getAllUsers,
     getUserById,
-    getUserByUsername
+    getUserByUsername,
+    getUserByEmail
 }
