@@ -2,6 +2,7 @@ require('dotenv').config(); // biblioteca para acessar as variáveis de ambiente
 const bcrypt = require('bcrypt'); // biblioteca para encriptar a senha
 const jwt = require('jsonwebtoken'); // biblioteca para gerar o token do usuário
 const userModelInterface = require('../models/userModelInterface'); // importando a model
+const { validateEmail } = require('../utils/validators'); // função que valida o email
 
 // login e autenticação
 const login = async (req, res) => {
@@ -10,13 +11,18 @@ const login = async (req, res) => {
     const userData = req.body;
   
     // verificando se todos os dados foram preenchidos antes de prosseguir
-    if (!userData || !userData.username || !userData.password) {
+    if (!userData || !userData.email || !userData.password) {
       return res.status(400).json({ message: 'Dados inválidos ou não preenchidos.' });
+    }
+
+    // Validar o formato do email
+    if (!validateEmail(userData.email)) {
+      return res.status(400).json({ message: 'Formato de email inválido.' });
     }
 
     try {
       // pesquisando o username fornecido para verificar se o usuário existe
-      const existingUser = await userModelInterface.getUserByUsername(userData.username);
+      const existingUser = await userModelInterface.getUserByEmail(userData.email);
       if (!existingUser) {
         return res.status(404).json({ message: 'Usuário não encontrado.' });
       }
@@ -26,10 +32,14 @@ const login = async (req, res) => {
       if (!isPasswordValid) {
         return res.status(401).json({ message: 'Senha incorreta.' });
       }
+
+      if (existingUser.isactive === false) {
+        return res.status(404).json({ message: 'Usuário não encontrado.' })
+      }
   
       // gerar token JWT
       const token = jwt.sign(
-        { userId: userData.id, username: userData.username },
+        { userId: userData.id, email: userData.email },
         process.env.TOKEN_SECRET_KEY, // chave secreta de autenticação do token
         { expiresIn: '1h' } // tempo de expiração do token
       );
