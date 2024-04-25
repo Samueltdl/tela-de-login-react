@@ -27,10 +27,10 @@ const createUser = async (req, res) => {
     delete userData.confirmPassword;
   
     try {
-      // pesquisando o username fornecido para verificar se já existe
-      const existingUser = await userModelInterface.getUserByUsername(userData.username);
+      // pesquisando o email fornecido para verificar se já existe cadastro
+      const existingUser = await userModelInterface.getUserByEmail(userData.email);
       if (existingUser) {
-        return res.status(400).json({ message: 'Username já existente.' });
+        return res.status(400).json({ message: 'Email já cadastrado.' });
       }
   
       // encripta o password antes de armazenar no banco de dados
