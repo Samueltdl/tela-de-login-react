@@ -2,7 +2,7 @@ const connectDatabase = require('../database/db'); // importando conexão com o 
 
 // delete o usuário especificado na requisição do banco
 const deleteUser = async () => {
-    console.log('Starting deleteUser model.')
+    console.log('Starting deleteUser model.');
 }
 
 module.exports = deleteUser;

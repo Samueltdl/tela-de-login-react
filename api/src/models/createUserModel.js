@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid'); // biblioteca uuid
 
 // cadastra um novo usuário no banco
 const createUser = async (userData) => {
-    console.log('Starting createUser model.')
+    console.log('Starting createUser model.');
     const { name, email, username, password } = userData;
     const userId = uuidv4();
   

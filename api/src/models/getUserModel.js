@@ -2,7 +2,7 @@ const connectDatabase = require('../database/db'); // importando conexão com o 
 
 // retorna todos os usuários do banco
 const getAllUsers = async () => {
-    console.log('Starting getAllUsers model.')
+    console.log('Starting getAllUsers model.');
     try {
       const pool = await connectDatabase();
       const { rows } = await pool.query('SELECT name, username FROM users');

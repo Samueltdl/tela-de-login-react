@@ -4,7 +4,7 @@ const { validateEmail } = require('../utils/validators'); // função que valida
 
 // edita as informações de um usuário (o usuário pode editar somente suas próprias informações)
 const updateUser = async (req, res) => {
-    console.log('Starting editUser controller.');
+    console.log('Starting updateUser controller.');
     
     const userData = req.body;
   
