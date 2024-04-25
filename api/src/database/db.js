@@ -9,6 +9,7 @@ async function connectDatabase() {
 
   // se já possui uma conexão ativa então retorna ela mesma
   if (pool) {
+    console.log("Successful connecting to the database.");
     return pool;
   }
 
