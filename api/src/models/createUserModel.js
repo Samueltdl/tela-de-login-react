@@ -11,7 +11,7 @@ const createUser = async (userData) => {
       const pool = await connectDatabase();
       
       const query = `
-        INSERT INTO users (id, name, email, username, password, registrationdate, isactive)
+        INSERT INTO users (user_id, name, email, username, password, registration_date, is_active)
         VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING *;
       `;

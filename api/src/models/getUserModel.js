@@ -18,7 +18,7 @@ const getUserById = async (userId) => {
   console.log('Starting getUserById model.')
   try {
     const pool = await connectDatabase();
-    const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const { rows } = await pool.query('SELECT * FROM users WHERE user_id = $1', [userId]);
     
     if (rows && rows.length > 0) {
       return rows[0];

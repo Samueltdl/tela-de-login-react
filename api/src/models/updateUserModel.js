@@ -3,7 +3,7 @@ const connectDatabase = require('../database/db'); // importando conexão com o 
 // edita o usuário especficado na requisição no banco
 const updateUser = async (user) => {
   console.log('Starting updateUser model.');
-  const { id, name, email, username, password } = user;
+  const { userId, name, email, username, password } = user;
 
   try {
     const pool = await connectDatabase();
@@ -11,11 +11,11 @@ const updateUser = async (user) => {
     const query = `
       UPDATE users
       SET name = $1, email = $2, username = $3
-      WHERE id = $4
+      WHERE user_id = $4
       RETURNING *
     `;
 
-    const values = [name, email, username, id];
+    const values = [name, email, username, userId];
 
     // Se a senha foi fornecida, atualize-a
     if (password) {
