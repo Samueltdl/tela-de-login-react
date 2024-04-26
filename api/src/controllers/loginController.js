@@ -33,19 +33,21 @@ const login = async (req, res) => {
         return res.status(401).json({ message: 'Senha incorreta.' });
       }
 
-      if (existingUser.isactive === false) {
+      if (existingUser.is_active === false) {
         return res.status(404).json({ message: 'Usuário não encontrado.' })
       }
-  
-      // gerar token JWT
+      
       const token = jwt.sign(
-        { userId: userData.id, email: userData.email },
-        process.env.TOKEN_SECRET_KEY, // chave secreta de autenticação do token
-        { expiresIn: '1h' } // tempo de expiração do token
+        { userId: existingUser.user_id, email: userData.email },
+        process.env.TOKEN_SECRET_KEY,
+        { expiresIn: '1h' }
       );
-    
+
       // se está tudo válido então retorna um status 200 e uma mensagem de login bem sucedido e o token
-      return res.status(200).json({ message: 'Login efetuado com sucesso.', token });
+      return res.status(200).json({ 
+        message: 'Login efetuado com sucesso.',
+        userId: `${existingUser.user_id}`,
+        token });
   
     } catch (error) {
       console.error("Error logging in:", error.message);
