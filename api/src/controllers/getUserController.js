@@ -22,7 +22,7 @@ const getAllUsers = async (req, res) => {
 // retorna somente o usuário com o id especificado na requisição
 const getUserById = async (req, res) => {
   console.log('Starting getUserById controller.');
-  const userId = req.params.id;
+  const userId = req.body.userId;
 
   try {
     const user = await userModelInterface.getUserById(userId);
@@ -33,9 +33,10 @@ const getUserById = async (req, res) => {
     }
 
     return res.status(200).json({
-      id:user.id,
+      userId:user.user_id,
       name:user.name,
-      username:user.username
+      username:user.username,
+      registrationDate:user.registration_date
     });
 
   } catch (error) {
@@ -58,10 +59,10 @@ const getUserByUsername = async (req, res) => {
     }
 
     return res.status(200).json({
-      id:user.id,
+      userId:user.user_id,
       name:user.name,
       username:user.username,
-      registrationDate:user.registrationdate
+      registrationDate:user.registration_date
     });
 
   } catch (error) {
