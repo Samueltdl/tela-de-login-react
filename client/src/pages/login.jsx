@@ -20,15 +20,11 @@ import { authenticate } from '../utils/auth/authenticate';
 export default function Login() {
 
   const {login, loading} = useLogin();
-  const navigate = useNavigate()
-
-  const loader = () => {
-    return loading ? <Loader /> : null
-  };
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   
-  const [username, setusername] = useState('');
+  const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
 
   const [openModalCadastro, setOpenModalCadastro] = useState(false);
@@ -41,10 +37,10 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const data = {username, password}
-    console.log(data)
+    const data = {email, password}
+    //console.log(data)
 
-    if (!data.username || !data.password){
+    if (!data || !data.email || !data.password){
       return alert("Todos os campos precisam ser preenchidos!")
     }
     else{
@@ -54,15 +50,17 @@ export default function Login() {
     }
   }
 
+  // styles dos inputs e das labels de email e password, para não ficarem repetidos no html
   const labelStyle = "text-gray-600 font-semibold lg:text-base md:text-sm"
   const inputStyle = "w-full py-1 bg-gray-100 rounded hover:bg-gray-200 duration-200"
 
   return (
     <div className="fixed inset-0 bg-blue-300 overflow-y-auto">
+      
+      {loading ? <Loader /> : null}
+
       <ModalCadastro isOpen={openModalCadastro} isClose={() => setOpenModalCadastro(!openModalCadastro)} />
       <ModalRecuperarSenha isOpen={openModalRecuperarSenha} isClose={() => setOpenModalRecuperarSenha(!openModalRecuperarSenha)} />
-
-      {loader()}
 
       <div className="min-h-full p-12 shadow-xl rounded-sm shadow-black md:w-5/12 xl:w-1/3 sm:w-7/12 bg-white">
         
@@ -73,8 +71,8 @@ export default function Login() {
 
           <div className="flex flex-col">
 
-            <label className={labelStyle}>Nome de usuário</label>
-            <input type="text" name="username" id="username" onChange={(e) => setusername(e.target.value)} className={inputStyle} />
+            <label className={labelStyle}>E-mail</label>
+            <input type="email" name="email" id="email" onChange={(e) => setemail(e.target.value)} className={inputStyle} />
           
           </div>
 
@@ -90,7 +88,7 @@ export default function Login() {
 
           <div className='flex justify-center space-x-5 px-2'>
 
-            <button type="submit" className="bg-green-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
+            <button type="submit" disabled={loading} className="bg-green-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
               Login
             </button>
             <button type="button" onClick={() => setOpenModalCadastro(!openModalCadastro)} className=" bg-red-500 w-1/3 h-7 text-white text-center text-sm font-semibold rounded-lg shadow-md shadow-gray-400 hover:scale-105 duration-150">
