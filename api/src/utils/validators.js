@@ -19,8 +19,12 @@ const validateToken = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
-    req.userId = decoded.userId;
-    req.username = decoded.username;
+    const user = req.body
+    
+    // Verifica se o userId do token corresponde ao userId da requisição
+    if (!user.userId || decoded.userId !== user.userId) {
+      return res.status(403).json({ message: 'Token inválido para este usuário.' });
+    }
     next();
   } catch (error) {
     console.error("Error verifying token:", error.message);
