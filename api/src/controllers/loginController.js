@@ -25,13 +25,13 @@ const login = async (req, res) => {
       const existingUser = await userModelInterface.getUserByEmail(userData.email);
       if (!existingUser) {
         // Aqui retorna email ou senha incorretos propositalmente para dificultar o acesso de pessoas que não o proprietário da conta
-        return res.status(404).json({ message: 'E-mail ou senha incorretos.' });
+        return res.status(401).json({ message: 'E-mail ou senha incorretos.' });
       }
   
       // Compara o password fornecido com o password armazenado no banco de dados usando bcrypt
       const isPasswordValid = await bcrypt.compare(userData.password, existingUser.password);
       if (!isPasswordValid) {
-        // Aqui é o mesmo cado da verificação de email acima, retorna email ou senha incorretos para dificultar o acesso de terceiros
+        // Aqui é o mesmo caso da verificação de email acima, retorna email ou senha incorretos para dificultar o acesso de terceiros
         return res.status(401).json({ message: 'E-mail ou senha incorretos.' });
       }
       
