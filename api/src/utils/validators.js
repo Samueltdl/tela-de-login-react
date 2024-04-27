@@ -7,6 +7,11 @@ const validateEmail = (email) => {
   return emailRegex.test(email);
 };
 
+//Validação do tamanho da senha, que deve ter no mínimo 8 caracteres
+const validateLenPassword = (password) => {
+  return password?.toString().length >= 8 ? true : false
+}
+
 // valida o token de usuário
 const validateToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -34,5 +39,6 @@ const validateToken = (req, res, next) => {
 
 module.exports = {
     validateEmail,
+    validateLenPassword,
     validateToken
 }

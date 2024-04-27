@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt'); // biblioteca para encriptar a senha
 const userModelInterface = require('../models/userModelInterface') // importando a model
-const { validateEmail } = require('../utils/validators'); // função que valida o email
+const { validateEmail, validateLenPassword } = require('../utils/validators'); // função que valida o email
 
 // cria um novo usuário
 const createUser = async (req, res) => {
@@ -16,6 +16,11 @@ const createUser = async (req, res) => {
   // Validar o formato do email
   if (!validateEmail(userData.email)) {
     return res.status(400).json({ message: 'Formato de email inválido.' });
+  }
+
+  // validar o tamanho da senha
+  if (!validateLenPassword(userData.password)) {
+    return res.status(400).json({ message: 'A senha deve conter no mínimo 8 caracteres.' });
   }
 
   // verificando se as senhas coincidem
