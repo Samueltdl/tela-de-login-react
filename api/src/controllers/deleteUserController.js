@@ -39,6 +39,11 @@ const deleteUser = async (req, res) => {
       return res.status(401).json({ message: 'E-mail ou senha incorretos.' });
     }
 
+    // verifica se o usuário está ativo para ser possível prosseguir, isso previne que um usuário possa fazer diversas requisições para deletar sua conta
+    if (existingUser.is_active === false) {
+      return res.status(404).json({ message: 'Usuário não encontrado.' })
+    }
+
     await userModelInterface.deleteUser(userData.userId);
     return res.status(200).json({ message: 'Usuário deletado com sucesso.' });
 
