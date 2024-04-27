@@ -1,9 +1,8 @@
 const connectDatabase = require('../database/db'); // importando conexão com o banco de dados
 
 // inativa o usuário especificado
-const deleteUser = async (user) => {
+const deleteUser = async (userId) => {
     console.log('Starting deleteUser model.');
-    const { userId } = user;
 
     try {
       const pool = await connectDatabase();
