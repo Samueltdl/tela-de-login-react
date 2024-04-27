@@ -32,7 +32,7 @@ const updateUser = async (req, res) => {
   delete userData.confirmPassword;
 
   try {
-    // pesquisando o email fornecido para verificar se já existe e é diferente do username antigo caso tenha sido alterado
+    // pesquisando o email fornecido para verificar se já existe e é diferente do email antigo caso tenha sido alterado
     const user = await userModelInterface.getUserById(userData.userId);
     const existingUser = await userModelInterface.getUserByEmail(userData.email);
     if (existingUser && existingUser.email !== user.email) {
