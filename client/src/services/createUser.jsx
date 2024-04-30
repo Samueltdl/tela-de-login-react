@@ -3,18 +3,18 @@ import { useState } from "react";
 //BaseURL da API
 import Api from "./config";
 
-export const useCadastrarUsuario = () => {
-  const [cadastrando, setCadastrando] = useState(false);
+export const useCreateUser = () => {
+  const [loading, setLoading] = useState(false);
 
-  const cadastrarUsuario = async (data) => {
+  const createUser = async (data) => {
   
     try {
-      setCadastrando(true);
+      setLoading(true);
       const response = await Api.post("/user", data);
 
       alert(response.data.message)
       
-      setCadastrando(false);
+      setLoading(false);
     } 
 
     catch (error) {
@@ -36,5 +36,5 @@ export const useCadastrarUsuario = () => {
     }
   };
 
-  return { cadastrarUsuario, cadastrando };
+  return { createUser, loading };
 };

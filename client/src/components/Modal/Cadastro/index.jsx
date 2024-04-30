@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // requisição de cadastro do usuário
-import { useCadastrarUsuario } from '../../../services/cadastro';
+import { useCreateUser } from '../../../services/createUser';
 
 //Components
 import { BgBlur } from '../../BackgroundBlur';
@@ -12,7 +12,7 @@ import Loader from '../../loader';
 import { validateEmail, validateLenPassword, validatePassword } from '../../../utils/validators';
 
 export const ModalCadastro = ({isOpen, isClose}) => {
-    const { cadastrarUsuario, cadastrando } = useCadastrarUsuario();
+    const { createUser, loading } = useCreateUser();
 
     // dados preenchidos pelo usuário
     const [name, setName] = useState("");
@@ -45,7 +45,7 @@ export const ModalCadastro = ({isOpen, isClose}) => {
             return
         }
 
-        await cadastrarUsuario(data);
+        await createUser(data);
         //window.location.reload();
     }
 
@@ -53,7 +53,7 @@ export const ModalCadastro = ({isOpen, isClose}) => {
     if(isOpen){
         return (
             <>
-            {cadastrando ? <Loader /> : null}
+            {loading ? <Loader /> : null}
             <BgBlur> {
                 <div className="flex flex-col h-auto max-[640px]:w-4/5 lg:w-1/4 md:w-1/3 sm:w-1/2 pb-2 items-center bg-white  rounded-md shadow-2xl z-40">
                     <div className="flex w-full px-4 py-4 border-b justify-between text-xl font-bold">
