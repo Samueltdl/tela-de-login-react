@@ -15,6 +15,8 @@ export const useUpdateUser = () => {
       alert(response.data.message)
       
       setLoading(false);
+
+      window.location.reload();
     } 
 
     catch (error) {
