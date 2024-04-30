@@ -52,13 +52,12 @@ export const ModalCadastro = ({isOpen, isClose}) => {
     //Código do modal
     if(isOpen){
         return (
-            <>
-            {loading ? <Loader /> : null}
             <BgBlur> {
                 <div className="flex flex-col h-auto max-[640px]:w-4/5 lg:w-1/4 md:w-1/3 sm:w-1/2 pb-2 items-center bg-white  rounded-md shadow-2xl z-40">
+                    {loading ? <Loader /> : null}
                     <div className="flex w-full px-4 py-4 border-b justify-between text-xl font-bold">
                         Cadastre-se!
-                        <button className="bg-pink-400 text-white w-7 h-7 hover:scale-110 duration-75 rounded" onClick={isClose} >X</button>
+                        <button className="bg-pink-400 text-white w-7 h-7 hover:scale-110 duration-75 rounded" disabled={loading} onClick={isClose} >X</button>
                     </div>
 
                     <form className="flex flex-col justify-center items-center w-full h-full space-y-3" onSubmit={handleSubmit}>
@@ -102,11 +101,10 @@ export const ModalCadastro = ({isOpen, isClose}) => {
                         id="confirmPassword"
                         //required
                     />
-                    <ButtonCadastrar label="Cadastrar"/>
+                    <ButtonCadastrar label="Cadastrar" disabled={loading}/>
                     </form>
                 </div>
             } </BgBlur> 
-            </>
         );
     }
 }

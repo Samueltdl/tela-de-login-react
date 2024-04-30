@@ -18,10 +18,10 @@ function InputField({ label, value, onChange, type, id, required }) {
 }
 
 //Componente de botão para submeter o formulário
-function ButtonCadastrar({label}) {
+function ButtonCadastrar({label, disabled}) {
   return (
     <div className="">
-      <button type="submit" className="bg-blue-500 text-sm rounded p-1 text-white hover:scale-105 duration-75">
+      <button type="submit" disabled={disabled} className="bg-blue-500 text-sm rounded p-1 text-white hover:scale-105 duration-75">
           {label}
       </button>
     </div>
