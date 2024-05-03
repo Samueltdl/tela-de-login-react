@@ -1,6 +1,12 @@
 import React from 'react'
 
+import { useGetAllUsers } from '../services/getAllUsers'
+
 export default function Home() {
+  const { usersList, loading } = useGetAllUsers();
+
+  console.log(usersList)
+
   return (
     <div className="fixed inset-0 bg-blue-200 ">
         <div className='flex h-full justify-center items-center'>
