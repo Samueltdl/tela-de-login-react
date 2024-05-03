@@ -4,15 +4,7 @@ const userModelInterface = require('../models/userModelInterface') // importando
 const getAllUsers = async (req, res) => {
   console.log('Starting getAllUsers controller.');
 
-  const userData = req.body
-
   try {
-    const existingUser = await userModelInterface.getUserById(userData.userId);
-    // verifica se o usuário existe e está ativo para ser possível prosseguir
-    if (!existingUser || existingUser.is_active === false) {
-      return res.status(404).json({ message: 'Usuário inválido.' })
-    }
-
     const users = await userModelInterface.getAllUsers();
     
     // se não possui nenhum usuário no banco então retorna uma mensagem informando que nenhum usuári foi encontrado
@@ -32,16 +24,9 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
   console.log('Starting getUserById controller.');
 
-  const userData = req.body
   const searchId = req.body.searchId;
 
   try {
-    const existingUser = await userModelInterface.getUserById(userData.userId);
-    // verifica se o usuário existe e está ativo para ser possível prosseguir
-    if (!existingUser || existingUser.is_active === false) {
-      return res.status(404).json({ message: 'Usuário inválido.' })
-    }
-
     const searchUser = await userModelInterface.getUserById(searchId);
 
     // caso não encontre o usuário correspondente ao id então retorna uma mensagem informando que o usuário não foi encontrado
@@ -66,16 +51,9 @@ const getUserById = async (req, res) => {
 const getUserByUsername = async (req, res) => {
   console.log('Starting getUserByUsername controller.');
 
-  const userData = req.body
   const searchUsername = req.body.searchUsername;
 
   try {
-    const existingUser = await userModelInterface.getUserById(userData.userId);
-    // verifica se o usuário existe e está ativo para ser possível prosseguir
-    if (!existingUser || existingUser.is_active === false) {
-      return res.status(404).json({ message: 'Usuário inválido.' })
-    }
-
     const searchUser = await userModelInterface.getUserByUsername(searchUsername);
 
     // caso não encontre o usuário correspondente ao username então retorna uma mensagem informando que o usuário não foi encontrado
