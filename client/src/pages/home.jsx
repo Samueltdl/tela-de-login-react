@@ -8,9 +8,27 @@ export default function Home() {
   console.log(usersList)
 
   return (
-    <div className="fixed inset-0 bg-blue-200 ">
-        <div className='flex h-full justify-center items-center'>
-            <p className='text-blue-600 font-bold text-xl border-b border-blue-600'>Parabéns, seu login foi efetuado com sucesso!</p>
+    <div className="fixed inset-0 bg-blue-200 flex justify-center items-center lg:p-4">
+        <div className='grid grid-cols-2 space-x-4 bg-purple-100 rounded-lg w-full h-full'>
+
+          <div className='p-4'>
+            infos do usuário logado
+          </div>
+
+          <div className='p-4'>
+            <div className="grid grid-cols-2 h-10 mx-3 my-1.5 px-4 rounded bg-white hover:bg-gray-100 text-sm">
+              <p className="flex items-center">Nome:</p>
+              <p className="flex items-center">Nome de usuário:</p>
+              
+            </div>
+            {usersList.map((user) => (
+              <div className="grid grid-cols-2 h-20 mx-3 my-1.5 px-4 rounded bg-white hover:bg-gray-100 text-sm">
+                <p className="flex items-center">{user.name}</p>
+                <p className="flex items-center">{user.username}</p>
+              </div>
+            ))}
+          </div>
+          
         </div>
     </div>
   )
