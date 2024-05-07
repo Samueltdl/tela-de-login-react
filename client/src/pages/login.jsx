@@ -62,7 +62,7 @@ export default function Login() {
       <ModalCadastro isOpen={openModalCadastro} isClose={() => setOpenModalCadastro(!openModalCadastro)} />
       <ModalRecuperarSenha isOpen={openModalRecuperarSenha} isClose={() => setOpenModalRecuperarSenha(!openModalRecuperarSenha)} />
 
-      <div className="min-h-full p-12 shadow-xl rounded-sm shadow-black md:w-5/12 xl:w-1/3 sm:w-7/12 bg-white">
+      <div className="min-h-full w-full min-[1000px]:w-1/3 min-[850px]:w-5/12 min-[650px]:w-1/2 min-[1450px]:w-1/4 bg-white p-10 rounded-sm shadow-xl shadow-black">
         
         <h1 className='text-xl font-semibold text-gray-600'>Faça Login ou cadastre-se</h1>
         <img src={monkey} className='rounded-full shadow-xl shadow-gray-300 scale-75'/>
