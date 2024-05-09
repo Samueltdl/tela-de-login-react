@@ -74,8 +74,37 @@ const getUserByUsername = async (req, res) => {
   }
 };
 
+// retorna somente o usuário com o id especificado na requisição
+const getUserLoged = async (req, res) => {
+  console.log('Starting getUserLoged controller.');
+
+  const user = req.user;
+
+  try {
+    const searchUser = await userModelInterface.getUserById(user.userId);
+
+    // caso não encontre o usuário correspondente ao id então retorna uma mensagem informando que o usuário não foi encontrado
+    if (!searchUser) {
+      return res.status(404).json({ message: 'Usuário não encontrado.' });
+    }
+
+    return res.status(200).json({
+      userId:searchUser.user_id,
+      name:searchUser.name,
+      email:searchUser.email,
+      username:searchUser.username,
+      registrationDate:searchUser.registration_date
+    });
+
+  } catch (error) {
+    console.error("Error fetching user by ID:", error.message);
+    return res.status(500).json({ message: 'Erro ao buscar usuário.' });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
-  getUserByUsername
+  getUserByUsername,
+  getUserLoged
 }

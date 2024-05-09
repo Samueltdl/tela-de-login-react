@@ -10,6 +10,7 @@ router.post('/user', userControllerInterface.createUser);
 router.use(validateToken);
 router.get('/allusers', userControllerInterface.getAllUsers);
 router.get('/user', userControllerInterface.getUserByUsername);
+router.get('/userLoged', userControllerInterface.getUserLoged);
 router.put('/user', userControllerInterface.updateUser);
 router.delete('/user', userControllerInterface.deleteUser);
 

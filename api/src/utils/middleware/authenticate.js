@@ -17,6 +17,7 @@ const validateToken = (req, res, next) => {
       if (!decoded) {
         return res.status(403).json({ message: 'Token inválido para este usuário.' });
       }
+      req.user = decoded
       next();
   
     } catch (error) {
