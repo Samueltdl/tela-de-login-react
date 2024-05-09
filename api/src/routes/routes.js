@@ -1,6 +1,6 @@
 const express = require('express'); // importando o express
 const userControllerInterface = require('../controllers/userControllerInterface'); // importando o controller
-const { validateToken } = require('../utils/validators'); // importando o validador de token
+const validateToken = require('../utils/middleware/authenticate'); // importando o validador de token
 
 const router = express.Router();
 
