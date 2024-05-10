@@ -38,7 +38,7 @@ OBS: É possível que o design das imagens a seguir não esteja 100% fiel ao des
 ### Tela de login:
 <img alt='Tela de Login' src='https://imgur.com/bm2DOrZ.png'><br>
 
-A tela de login é a primeira que o usuário vê ao abrir a aplicação, nela é possível realizar o login, caso já possua cadastro, ou realizar seu cadastro. Também será possível acessar um método para recuperação de senha, caso o usuário tenha esquecido a sua. Abaixo está uma imagem da tela de login.
+A tela de login é a primeira que o usuário vê ao abrir a aplicação, nela é possível realizar o login, caso já possua cadastro, ou realizar seu cadastro. Também será possível acessar um método para recuperação de senha, caso o usuário tenha esquecido a sua.
 <br>
 
 <b>Cadastro:</b>
