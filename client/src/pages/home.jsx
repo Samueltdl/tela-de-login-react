@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useGetAllUsers } from '../services/getAllUsers'; // importando hook de requisição
+import { useGetAllUsers } from '../services/getUser'; // importando hook de requisição
 
 // components
 import Loader from '../components/loader';

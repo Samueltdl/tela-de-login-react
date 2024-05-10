@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 //BaseURL da API
 import Api from "./config";
 
+// requisição para dar get em todos os usuários (a api retorna apenas o name e o username)
 export const useGetAllUsers = () => {
 
   const [usersList, setUsersList] = useState([]);
