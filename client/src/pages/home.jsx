@@ -8,8 +8,8 @@ import NavBar from '../components/NavBar';
 
 export default function Home() {
 
-  const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(7);
+  const [page, setPage] = useState(1); // página atual
+  const [perPage, setPerPage] = useState(7); // número de usuários exibidos por página
   
   const { user, loading } = useGetUserLoged();
   const { usersList } = useGetUsersByPage(page, perPage);
@@ -17,6 +17,7 @@ export default function Home() {
   //console.log(usersList);
   
   const containerStyle = 'inset-0 p-4 bg-white rounded-lg shadow-md shadow-gray-900' // estilo dos dois containers de informação principais
+  const containerTitleStyle = 'text-center text-xl font-semibold border-b border-gray-300' // estilo do título h1 de cada container
   const pageButtonStyle = 'font-semibold text-black hover:text-blue-600 duration-200 cursor-pointer' // estilo dos botões de avançar e retroceder página
   
   const userLogedInfo = (label, info) => {
@@ -27,7 +28,7 @@ export default function Home() {
         </div>
     );
   }
-  
+
   return (
     <>
     
@@ -40,7 +41,7 @@ export default function Home() {
             
             <div className='flex flex-col space-y-3'>
 
-              <h1 className='text-center text-xl font-semibold border-b border-gray-300'>Minhas informações:</h1>
+              <h1 className={containerTitleStyle}>Minhas informações:</h1>
 
               <div className='flex flex-col space-y-4'>
               {loading ? (
@@ -66,7 +67,7 @@ export default function Home() {
 
           <div className={containerStyle}>
 
-            <h1 className='text-center text-xl font-semibold border-b border-gray-300'>Usuários cadastrados:</h1>
+            <h1 className={containerTitleStyle}>Usuários cadastrados:</h1>
 
             <div className="grid grid-cols-2 h-10 mx-3 my-1.5 px-4 rounded bg-white hover:bg-gray-100 text-sm">
               <p className="flex items-center">Nome:</p>
