@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useGetAllUsers, useGetUserLoged } from '../services/getUser'; // importando hook de requisição
+import { useGetUsersByPage, useGetUserLoged } from '../services/getUser'; // importando hook de requisição
 
 // components
 import Loader from '../components/loader';
@@ -8,6 +8,16 @@ import NavBar from '../components/NavBar';
 
 export default function Home() {
 
+  const page = 1
+  const perPage = 5
+  
+  const { user } = useGetUserLoged();
+  const { usersList, loading } = useGetUsersByPage(page, perPage);
+  //console.log(user);
+  //console.log(usersList);
+  
+  const containerStyle = 'inset-0 p-4 bg-white rounded-lg shadow-md shadow-gray-900'
+  
   const userLogedInfo = (label, info) => {
     return (
       <div className='flex space-x-2 text-md'>
@@ -17,14 +27,6 @@ export default function Home() {
     );
   }
   
-  const { user } = useGetUserLoged();
-  const { usersList, loading } = useGetAllUsers();
-
-  const containerStyle = 'inset-0 p-4 bg-white rounded-lg shadow-md shadow-gray-900'
-
-  //console.log(user);
-  console.log(usersList);
-
   return (
     <>
     {loading ? <Loader /> : null}

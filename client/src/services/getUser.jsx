@@ -4,18 +4,18 @@ import { useState, useEffect } from "react";
 import Api from "./config";
 
 // requisição para dar get em todos os usuários (a api retorna apenas o name e o username)
-export const useGetAllUsers = () => {
+export const useGetUsersByPage = (page, perPage) => {
 
   const [usersList, setUsersList] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-  const getAllUsers = async () => {
+  const getUsersByPage = async () => {
 
     try {
       setLoading(true);
       
-      const response = await Api.get("/allUsers");
+      const response = await Api.get(`/users?page=${page}&perPage=${perPage}`);
 
       setUsersList(response.data);
 
@@ -41,8 +41,8 @@ export const useGetAllUsers = () => {
     }
   };
 
-  getAllUsers();
-  }, []);
+  getUsersByPage();
+  }, [page, perPage]);
 
   return { usersList, loading };
 };
