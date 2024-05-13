@@ -1,11 +1,11 @@
 // importando todas as models
-const { getAllUsers, getUserById, getUserByUsername, getUserByEmail } = require('./getUserModel');
+const { getUsersByPage, getUserById, getUserByUsername, getUserByEmail } = require('./getUserModel');
 const createUser = require('./createUserModel');
 const updateUser = require('./updateUserModel');
 const deleteUser = require('./deleteUserModel');
 
 module.exports = {
-    getAllUsers,
+    getUsersByPage,
     getUserById,
     getUserByUsername,
     getUserByEmail,

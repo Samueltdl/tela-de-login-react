@@ -1,17 +1,22 @@
 const connectDatabase = require('../database/db'); // importando conexão com o banco de dados
 
-// retorna todos os usuários do banco
-const getAllUsers = async () => {
-    console.log('Starting getAllUsers model.');
-    try {
+// retorna os usuários paginados do banco
+const getUsersByPage = async (page, perPage) => {
+  console.log('Starting getUsersByPage model.');
+  try {
       const pool = await connectDatabase();
-      const { rows } = await pool.query('SELECT name, username FROM users');
+      const offset = (page - 1) * perPage;
+      const query = {
+          text: 'SELECT name, username FROM users ORDER BY user_id OFFSET $1 LIMIT $2',
+          values: [offset, perPage]
+      };
+      const { rows } = await pool.query(query);
       return rows;
-    } catch (error) {
-      console.error("Error fetching all users:", error.message);
+  } catch (error) {
+      console.error("Error fetching users by page:", error.message);
       throw error;
-    }
-  };
+  }
+};
 
 // retorna somente o usuário do banco com o id especificado na requisição
 const getUserById = async (userId) => {
@@ -78,7 +83,7 @@ const getUserByEmail = async (email) => {
 };
 
 module.exports = {
-    getAllUsers,
+    getUsersByPage,
     getUserById,
     getUserByUsername,
     getUserByEmail

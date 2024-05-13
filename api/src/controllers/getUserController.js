@@ -1,21 +1,24 @@
 const userModelInterface = require('../models/userModelInterface') // importando a model
 
-// retorna todos os usuários
-const getAllUsers = async (req, res) => {
-  console.log('Starting getAllUsers controller.');
+// retorna todos os usuários paginados
+const getUsersByPage = async (req, res) => {
+  console.log('Starting getUsersByPage controller.');
 
   try {
-    const users = await userModelInterface.getAllUsers();
+    const page = parseInt(req.query.page) || 1;
+    const perPage = parseInt(req.query.perPage) || 8;
     
-    // se não possui nenhum usuário no banco então retorna uma mensagem informando que nenhum usuári foi encontrado
+    const users = await userModelInterface.getUsersByPage(page, perPage);
+    
+    // se não houver usuários na página especificada, retorna uma mensagem informando que nenhum usuário foi encontrado
     if (!users || users.length === 0) {
-      return res.status(404).json({ message: 'Nenhum usuário encontrado.' });
+      return res.status(404).json({ message: 'Nenhum usuário encontrado nesta página.' });
     }
 
-    return res.status(200).json(users);
+    return res.status(200).json(users); // retorna os usuários da página selecionada
 
   } catch (error) {
-    console.error("Error fetching all users:", error.message);
+    console.error("Error fetching users by page:", error.message);
     return res.status(500).json({ message: 'Erro ao buscar usuários.' });
   }
 };
@@ -103,7 +106,7 @@ const getUserLoged = async (req, res) => {
 };
 
 module.exports = {
-  getAllUsers,
+  getUsersByPage,
   getUserById,
   getUserByUsername,
   getUserLoged
