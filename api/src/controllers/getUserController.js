@@ -54,7 +54,7 @@ const getUserById = async (req, res) => {
 const getUserByUsername = async (req, res) => {
   console.log('Starting getUserByUsername controller.');
 
-  const searchUsername = req.body.searchUsername;
+  const searchUsername = req.query.searchUsername;
 
   try {
     const searchUser = await userModelInterface.getUserByUsername(searchUsername);
@@ -64,12 +64,7 @@ const getUserByUsername = async (req, res) => {
       return res.status(404).json({ message: 'Usuário não encontrado.' });
     }
 
-    return res.status(200).json({
-      userId:searchUser.user_id,
-      name:searchUser.name,
-      username:searchUser.username,
-      registrationDate:searchUser.registration_date
-    });
+    return res.status(200).json(searchUser);
 
   } catch (error) {
     console.error("Error fetching user by username:", error.message);

@@ -47,9 +47,8 @@ const getUserByUsername = async (username) => {
     `;
 
     const { rows } = await pool.query(query, [username]);
-
     if (rows && rows.length > 0) {
-      return rows[0];
+      return rows;
     } else {
       return null;
     }
