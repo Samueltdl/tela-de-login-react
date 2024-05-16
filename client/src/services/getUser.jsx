@@ -103,7 +103,7 @@ export const useGetUserByUsername = (username) => {
     try {
       setLoading(true);
       
-      const response = await Api.get(`/user?username=${username}`);
+      const response = await Api.get(`/user?searchUsername=${username}`);
 
       setUsersByUsernameList(response.data);
 
