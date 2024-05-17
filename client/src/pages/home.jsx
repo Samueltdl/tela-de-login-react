@@ -11,8 +11,8 @@ export default function Home() {
   const [page, setPage] = useState(1); // página atual
   const [perPage, setPerPage] = useState(7); // número de usuários exibidos por página
   
-  const { user, loading } = useGetUserLoged();
-  const { usersList } = useGetUsersByPage(page, perPage);
+  const { user, loadingUser } = useGetUserLoged();
+  const { usersList, loadingUsersList } = useGetUsersByPage(page, perPage);
   //console.log(user);
   //console.log(usersList);
   
@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <>
-    
+      {loadingUser || loadingUsersList ? <Loader /> : null}
       <div className="fixed inset-0 overflow-y-auto bg-blue-200 flex flex-col justify-center items-center"> 
         <NavBar />
       
@@ -44,21 +44,17 @@ export default function Home() {
               <h1 className={containerTitleStyle}>Minhas informações:</h1>
 
               <div className='flex flex-col space-y-4'>
-              {loading ? (
-                <Loader />
-              ) : (
-                <>
-                  {user && (
-                    <>
-                      {userLogedInfo('ID:', user.userId)}
-                      {userLogedInfo('Nome:', user.name)}
-                      {userLogedInfo('E-mail:', user.email)}
-                      {userLogedInfo('Nome de usuário:', user.username)}
-                      {userLogedInfo('Data de registro:', user.registrationDate.split('T')[0])}
-                    </>
-                  )}
-                </>
-              )}
+              
+                {user && (
+                  <>
+                    {userLogedInfo('ID:', user.userId)}
+                    {userLogedInfo('Nome:', user.name)}
+                    {userLogedInfo('E-mail:', user.email)}
+                    {userLogedInfo('Nome de usuário:', user.username)}
+                    {userLogedInfo('Data de registro:', user.registrationDate.split('T')[0])}
+                  </>
+                )}
+                
               </div>
 
             </div>

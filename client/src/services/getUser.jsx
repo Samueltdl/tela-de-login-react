@@ -7,23 +7,23 @@ import Api from "./config";
 export const useGetUsersByPage = (page, perPage) => {
 
   const [usersList, setUsersList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingUsersList, setLoadingUsersList] = useState(false);
 
   useEffect(() => {
   const getUsersByPage = async () => {
 
     try {
-      setLoading(true);
+      setLoadingUsersList(true);
       
       const response = await Api.get(`/users?page=${page}&perPage=${perPage}`);
 
       setUsersList(response.data);
 
-      setLoading(false);
+      setLoadingUsersList(false);
     } 
 
     catch (error) {
-      setLoading(false);
+      setLoadingUsersList(false);
 
       if (error.response) {
         // a resposta foi recebida, mas tem um status diferente de 2xx
@@ -44,30 +44,30 @@ export const useGetUsersByPage = (page, perPage) => {
   getUsersByPage();
   }, [page, perPage]);
 
-  return { usersList, loading };
+  return { usersList, loadingUsersList };
 };
 
 // requisção para dar get nas informações do usuário que está logado
 export const useGetUserLoged = () => {
 
   const [user, setUser] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loadingUser, setLoadingUser] = useState(false);
 
   useEffect(() => {
   const getUserLoged = async () => {
 
     try {
-      setLoading(true);
+      setLoadingUser(true);
       
       const response = await Api.get("/userLoged");
 
       setUser(response.data);
 
-      setLoading(false);
+      setLoadingUser(false);
     } 
 
     catch (error) {
-      setLoading(false);
+      setLoadingUser(false);
 
       if (error.response) {
         // a resposta foi recebida, mas tem um status diferente de 2xx
@@ -88,7 +88,7 @@ export const useGetUserLoged = () => {
   getUserLoged();
   }, []);
 
-  return { user, loading };
+  return { user, loadingUser };
 };
 
 // requisição para dar get em todos os usuários (a api retorna apenas o name e o username)
