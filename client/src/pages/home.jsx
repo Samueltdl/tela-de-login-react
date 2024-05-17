@@ -11,7 +11,7 @@ export default function Home() {
   const [page, setPage] = useState(1); // página atual
   const [perPage, setPerPage] = useState(7); // número de usuários exibidos por página
   
-  const { user, loadingUser } = useGetUserLoged();
+  const { userLoged, loadingUserLoged } = useGetUserLoged();
   const { usersList, loadingUsersList } = useGetUsersByPage(page, perPage);
   //console.log(user);
   //console.log(usersList);
@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <>
-      {loadingUser || loadingUsersList ? <Loader /> : null}
+      {loadingUserLoged || loadingUsersList ? <Loader /> : null}
       <div className="fixed inset-0 overflow-y-auto bg-blue-200 flex flex-col justify-center items-center"> 
         <NavBar />
       
@@ -45,13 +45,13 @@ export default function Home() {
 
               <div className='flex flex-col space-y-4'>
               
-                {user && (
+                {userLoged && (
                   <>
-                    {userLogedInfo('ID:', user.userId)}
-                    {userLogedInfo('Nome:', user.name)}
-                    {userLogedInfo('E-mail:', user.email)}
-                    {userLogedInfo('Nome de usuário:', user.username)}
-                    {userLogedInfo('Data de registro:', user.registrationDate.split('T')[0])}
+                    {userLogedInfo('ID:', userLoged.userId)}
+                    {userLogedInfo('Nome:', userLoged.name)}
+                    {userLogedInfo('E-mail:', userLoged.email)}
+                    {userLogedInfo('Nome de usuário:', userLoged.username)}
+                    {userLogedInfo('Data de registro:', userLoged.registrationDate.split('T')[0])}
                   </>
                 )}
                 
@@ -70,7 +70,7 @@ export default function Home() {
               <p className="flex items-center">Nome de usuário:</p>
               
             </div>
-            {usersList.map((user) => (
+            {usersList && usersList.map((user) => (
               <div className="grid grid-cols-2 h-20 mx-3 my-1.5 px-4 rounded bg-white hover:bg-gray-100 text-sm">
                 <p className="flex items-center">{user.name}</p>
                 <p className="flex items-center">{user.username}</p>

@@ -50,24 +50,24 @@ export const useGetUsersByPage = (page, perPage) => {
 // requisção para dar get nas informações do usuário que está logado
 export const useGetUserLoged = () => {
 
-  const [user, setUser] = useState();
-  const [loadingUser, setLoadingUser] = useState(false);
+  const [userLoged, setUserLoged] = useState();
+  const [loadingUserLoged, setLoadingUserLoged] = useState(false);
 
   useEffect(() => {
   const getUserLoged = async () => {
 
     try {
-      setLoadingUser(true);
+      setLoadingUserLoged(true);
       
       const response = await Api.get("/userLoged");
 
-      setUser(response.data);
+      setUserLoged(response.data);
 
-      setLoadingUser(false);
+      setLoadingUserLoged(false);
     } 
 
     catch (error) {
-      setLoadingUser(false);
+      setLoadingUserLoged(false);
 
       if (error.response) {
         // a resposta foi recebida, mas tem um status diferente de 2xx
@@ -88,30 +88,30 @@ export const useGetUserLoged = () => {
   getUserLoged();
   }, []);
 
-  return { user, loadingUser };
+  return { userLoged, loadingUserLoged };
 };
 
 // requisição para dar get em todos os usuários (a api retorna apenas o name e o username)
 export const useGetUserByUsername = (username) => {
 
-  const [usersByUsernameList, setUsersByUsernameList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [userByUsernameList, setUserByUsernameList] = useState([]);
+  const [loadingUserByUsername, setLoadingUserByUsername] = useState(false);
 
   useEffect(() => {
   const getUserByUsername = async () => {
 
     try {
-      setLoading(true);
+      setLoadingUserByUsername(true);
       
       const response = await Api.get(`/user?searchUsername=${username}`);
 
-      setUsersByUsernameList(response.data);
+      setUserByUsernameList(response.data);
 
-      setLoading(false);
+      setLoadingUserByUsername(false);
     } 
 
     catch (error) {
-      setLoading(false);
+      setLoadingUserByUsername(false);
 
       if (error.response) {
         // a resposta foi recebida, mas tem um status diferente de 2xx
@@ -132,5 +132,5 @@ export const useGetUserByUsername = (username) => {
   getUserByUsername();
   }, []);
 
-  return { usersByUsernameList, loading };
+  return { userByUsernameList, loadingUserByUsername };
 };
