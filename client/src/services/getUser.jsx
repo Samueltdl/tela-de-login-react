@@ -8,43 +8,46 @@ export const useGetUsersByPage = (page, perPage) => {
 
   const [usersList, setUsersList] = useState([]);
   const [loadingUsersList, setLoadingUsersList] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalUsers, setTotalUsers] = useState(0);
 
   useEffect(() => {
-  const getUsersByPage = async () => {
+    const getUsersByPage = async () => {
 
-    try {
-      setLoadingUsersList(true);
-      
-      const response = await Api.get(`/users?page=${page}&perPage=${perPage}`);
+      try {
+        setLoadingUsersList(true);
 
-      setUsersList(response.data);
+        const response = await Api.get(`/users?page=${page}&perPage=${perPage}`);
 
-      setLoadingUsersList(false);
-    } 
+        setUsersList(response.data.users);
+        setTotalPages(response.data.totalPages);
+        setTotalUsers(response.data.totalUsers);
+        setLoadingUsersList(false);
+      } 
 
-    catch (error) {
-      setLoadingUsersList(false);
+      catch (error) {
+        setLoadingUsersList(false);
 
-      if (error.response) {
-        // a resposta foi recebida, mas tem um status diferente de 2xx
-        const errorMessage = error.response.data.message || "Ocorreu um erro ao buscar a lista de usuários.";
-        alert(`${errorMessage}\n\nCódigo do erro: ${error.response.status}`);
-      
-      } else if (error.request) {
-        // a solicitação foi feita, mas não recebeu resposta
-        alert("Não foi recebida resposta do servidor.");
-      
-      } else {
-        // ocorreu um erro durante a configuração da solicitação
-        alert("Ocorreu um erro ao enviar a requisição.");
+        if (error.response) {
+          // a resposta foi recebida, mas tem um status diferente de 2xx
+          const errorMessage = error.response.data.message || "Ocorreu um erro ao buscar a lista de usuários.";
+          alert(`${errorMessage}\n\nCódigo do erro: ${error.response.status}`);
+
+        } else if (error.request) {
+          // a solicitação foi feita, mas não recebeu resposta
+          alert("Não foi recebida resposta do servidor.");
+
+        } else {
+          // ocorreu um erro durante a configuração da solicitação
+          alert("Ocorreu um erro ao enviar a requisição.");
+        }
       }
-    }
-  };
+    };
 
-  getUsersByPage();
+    getUsersByPage();
   }, [page, perPage]);
 
-  return { usersList, loadingUsersList };
+  return { usersList, loadingUsersList, totalPages, totalUsers };
 };
 
 // requisção para dar get nas informações do usuário que está logado
