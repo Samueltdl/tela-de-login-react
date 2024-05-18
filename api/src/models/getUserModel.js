@@ -9,7 +9,7 @@ const getUsersByPage = async (page, perPage) => {
 
       // Query para obter os usuários paginados
       const queryUsers = {
-          text: 'SELECT name, username FROM users ORDER BY id OFFSET $1 LIMIT $2',
+          text: 'SELECT name, username FROM users ORDER BY user_id OFFSET $1 LIMIT $2',
           values: [offset, perPage]
       };
       const { rows: users } = await pool.query(queryUsers);
