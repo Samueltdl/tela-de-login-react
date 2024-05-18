@@ -6,19 +6,19 @@ const getUsersByPage = async (req, res) => {
 
   try {
     const page = parseInt(req.query.page) || 1;
-    const perPage = parseInt(req.query.perPage) || 8;
-    
-    const users = await userModelInterface.getUsersByPage(page, perPage);
-    
+    const perPage = parseInt(req.query.perPage) || 10;
+
+    const { users, totalPages, totalUsers } = await userModelInterface.getUsersByPage(page, perPage);
+
     // se não houver usuários na página especificada, retorna uma mensagem informando que nenhum usuário foi encontrado
     if (!users || users.length === 0) {
       return res.status(404).json({ message: 'Nenhum usuário encontrado nesta página.' });
     }
 
-    return res.status(200).json(users); // retorna os usuários da página selecionada
+    return res.status(200).json({ users, totalPages, totalUsers });
 
   } catch (error) {
-    console.error("Error fetching users by page:", error.message);
+    console.error("Error fetching all users:", error.message);
     return res.status(500).json({ message: 'Erro ao buscar usuários.' });
   }
 };
