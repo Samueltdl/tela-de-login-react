@@ -9,10 +9,10 @@ import NavBar from '../components/NavBar';
 export default function Home() {
 
   const [page, setPage] = useState(1); // página atual
-  const [perPage, setPerPage] = useState(7); // número de usuários exibidos por página
+  const [perPage, setPerPage] = useState(2); // número de usuários exibidos por página
   
   const { userLoged, loadingUserLoged } = useGetUserLoged();
-  const { usersList, loadingUsersList } = useGetUsersByPage(page, perPage);
+  const { usersList, loadingUsersList, totalPages, totalUsers } = useGetUsersByPage(page, perPage);
   //console.log(user);
   //console.log(usersList);
   
@@ -79,8 +79,8 @@ export default function Home() {
 
             <div className='flex justify-center gap-x-3'>
               <button className={pageButtonStyle} type='button' disabled={page === 1 ? true : false} onClick={() => setPage(page - 1)}>anterior</button>
-              <p className='font-bold text-lg text-blue-500'>{page}</p>
-              <button className={pageButtonStyle} type='button' onClick={() => setPage(page + 1)}>próximo</button>
+              <p className='font-bold text-lg text-blue-500'>{page} / {totalPages}</p>
+              <button className={pageButtonStyle} type='button' disabled={page === totalPages ? true : false} onClick={() => setPage(page + 1)}>próximo</button>
             </div>
 
           </div>
