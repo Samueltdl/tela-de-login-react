@@ -55,3 +55,13 @@ Aqui todas as informações precisam ser preenchidas, no front-end possui verifi
 Esta parte ainda não está feita, mas a ideia é que ao clicar no botão "Esqueci minha senha" este modal seja aberto pedindo para o usuário informar seu E-mail e solicitar uma recuperação de senha.
 
 O objetivo é que a requisição seja feita para o back-end informando o E-mail, para ser verificado se existe um cadastro com o mesmo e enviar um código para que o usuário possa cadastrar uma nova senha.
+
+### Página Inicial:
+<img alt='Página Inicial' src='https://imgur.com/sRCfgfd.png'><br>
+
+Após fazer o login o usuário é direcionado para esta tela, onde é possível visualzar suas informações e também uma lista dos usuários cadastrados, mostrando algumas de suas informações. Aqui é possível editar suas informações, fazer logout e também "excluir" seu cadastro.
+
+<b>Logout:</b>
+
+<img alt='Página Inicial' src='https://imgur.com/1fNpLXF.png'><br>
+Ná página inicial, ao clicar no botão "Sair" no canto superior direito, é aberto este modal para confirmar a intenção do usuário de realizar logout na aplicação. Ao clicar em "Sim" o usuário é redirecionado para a página de login e seus dados são removidos do LocalStorage.
